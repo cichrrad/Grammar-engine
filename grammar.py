@@ -8,10 +8,12 @@ class Grammar:
     file_path = 'grammar.gr'
     def __init__ (self,file_path):
         self.file_path = file_path
+        print(f"Grammar initialized with file \'{file_path}\'")
 
     def parseGrammar(self):
         with open(self.file_path, 'r') as file:
             lines = file.readlines()
+            
             i = 0
             while i < len(lines):
                 line = lines[i].strip()
@@ -42,7 +44,7 @@ class Grammar:
                         elif key.startswith('<nter_'):
                             value = value.rstrip(';')
                             self.nonterminal_symbols[key] = value
-                    print(f"BLOCK ===\n{block_str}\n===\n\n")
+                    #print(f"BLOCK ===\n{block_str}\n===\n\n")
                 i += 1
 
 
@@ -69,7 +71,7 @@ class Grammar:
                 definition
             )
             print(definition)
-        print (f"\nExpanded name\n{definition}")
+        #print (f"\nExpanded name\n{definition}")
         return definition
 
 
@@ -77,9 +79,6 @@ class Grammar:
 
 a = Grammar("grammar.gr")
 a.parseGrammar()
-print(f"START SYMBOLS ===\n{a.start_symbols}\n===\n\n")
-print(f"NONTERMINAL SYMBOLS ===\n{a.nonterminal_symbols}\n===\n\n")
-print(f"TERMINAL SYMBOLS ===\n{a.terminal_symbols}\n===\n\n")
 non_terminal = a.find_nonterminal('male','dunmer')
 name = a.expand_nonterminal(non_terminal)
 print(f"NAME : {name}")
