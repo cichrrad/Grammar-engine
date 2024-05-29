@@ -5,10 +5,10 @@ class Grammar:
     start_symbols = {}
     terminal_symbols = {}
     nonterminal_symbols = {}
-    file_path = 'grammar.gr'
-    def __init__ (self,file_path):
+    
+    def __init__ (self, file_path):
         self.file_path = file_path
-        print(f"Grammar initialized with file \'{file_path}\'")
+        print(f"Grammar initialized with file '{file_path}'")
 
     def parseGrammar(self):
         with open(self.file_path, 'r') as file:
@@ -43,16 +43,16 @@ class Grammar:
                             self.terminal_symbols[key] = value_list
                         elif key.startswith('<nter_'):
                             value = value.rstrip(';')
-                            self.nonterminal_symbols[key] = value
-                    #print(f"BLOCK ===\n{block_str}\n===\n\n")
+                            # Split the value by '|'
+                            value_list = [part.strip() for part in value.split('|')]
+                            self.nonterminal_symbols[key] = value_list
                 i += 1
-
 
     def find_nonterminal(self, sex, race):
         key = f"<nter_{sex}_{race}_name>"
         if key in self.nonterminal_symbols:
             print(f"Nonterminal for sex={sex} and race={race}: {self.nonterminal_symbols[key]}")
-            return self.nonterminal_symbols[key]
+            return random.choice(self.nonterminal_symbols[key])
         else:
             print(f"No nonterminal found for sex={sex} and race={race}")
             return None
@@ -61,7 +61,7 @@ class Grammar:
         while re.search(r'<(nter|ter)_.*?>', definition):
             definition = re.sub(
                 r'<nter_.*?>',
-                lambda match: self.nonterminal_symbols.get(match.group(0), match.group(0)),
+                lambda match: random.choice(self.nonterminal_symbols.get(match.group(0), [match.group(0)])),
                 definition
             )
             print(definition)
@@ -71,15 +71,53 @@ class Grammar:
                 definition
             )
             print(definition)
-        #print (f"\nExpanded name\n{definition}")
         return definition
 
+    def generate_name(self, sex, race):
+        nonterminal_key = f"<nter_{sex}_{race}_name>"
+        if nonterminal_key not in self.nonterminal_symbols:
+            return f"No name pattern found for sex={sex} and race={race}"
+        
+        start_key = f"<start_{sex}_{race}_name>"
+        if start_key in self.start_symbols:
+            start_value = self.start_symbols[start_key]
+        else:
+            start_value = ""
+        
+        nonterminal_value = random.choice(self.nonterminal_symbols[nonterminal_key])
+        expanded_nonterminal = self.expand_nonterminal(nonterminal_value)
+        
+        name = f"{start_value} {expanded_nonterminal}".strip()
+        return name
 
-
-
-a = Grammar("grammar.gr")
+# Example usage
+file_path = 'grammar.gr'
+a = Grammar(file_path)
 a.parseGrammar()
-non_terminal = a.find_nonterminal('male','dunmer')
-name = a.expand_nonterminal(non_terminal)
-print(f"NAME : {name}")
 
+# Print the maps to verify
+#print("Start Symbols:", a.start_symbols)
+#print("Terminal Symbols:", a.terminal_symbols)
+#print("Nonterminal Symbols:", a.nonterminal_symbols)
+
+# Example find_nonterminal usage
+for i in range(10):
+    sex = 'male'
+    race = 'argonian'
+    non_terminal = a.find_nonterminal(sex, race)
+    print(f"Nonterminal: {non_terminal}")
+
+    # Generate a name
+    generated_name = a.generate_name(sex, race)
+    print(f"\nGenerated Name: {generated_name}\n")
+
+# Example find_nonterminal usage
+for i in range(10):
+    sex = 'female'
+    race = 'imperial'
+    non_terminal = a.find_nonterminal(sex, race)
+    print(f"Nonterminal: {non_terminal}")
+
+    # Generate a name
+    generated_name = a.generate_name(sex, race)
+    print(f"\nGenerated Name: {generated_name}\n")
