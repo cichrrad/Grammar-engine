@@ -7,30 +7,31 @@ Ruby application that generates **sound** and **lore-accurate** character sheets
 
 ## Features
 
-* **Lore-Accurate Naming Engine:**
+### **Lore-Accurate Naming Engine:**
 * Generates race-specific names (e.g., "Ash-Hanta" for Ashlanders, "Moghakh" for Orcs).
 * **Argonians:** Generates dynamic Cyrodilic phrases (e.g., *"Hides-His-Eyes"*, *"Walks-In-Shadows"*) or traditional Jel names.
 * **Orcs:** Correctly handles gendered surnames (`gro-` for males, `gra-` for females).
 * **Imperials:** Context-aware gender suffixes for Roman-style names.
 
 
-* **True Stat Calculation:**
+### **True Stat Calculation:**
 * Calculates **Attributes** by summing: `Race Base Stats` + `Gender Differences` + `Birthsign Bonuses` + `Class Favored Attributes`.
 
-
-* **Complete Skill Generation:**
+### **Complete Skill Generation:**
 * Assigns **Major** (Base 30), **Minor** (Base 15), and **Misc** (Base 5) skills.
 * Applies **+5 Specialization Bonus** (Combat/Magic/Stealth) to all relevant skills.
 * Applies **Racial Bonuses** (e.g., Dunmer get +10 Destruction).
 * Outputs the final, calculated value for every skill.
 
-**Examples:**
+## Example
+
+### Input
 
 ```bash
 ruby MorrowGen.rb male orc
 ```
 
-## Example Output
+### Output
 
 ```text
 ==========================================
