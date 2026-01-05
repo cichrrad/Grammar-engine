@@ -4,7 +4,7 @@ require_relative '../lib/ClassGenerator'
 require_relative '../lib/SkillsGenerator'
 
 class Character
-  attr_accessor :name, :race, :gender, :birthsign, :char_class, :attributes, :skills, :major_skills, :minor_skills,
+  attr_accessor :name, :race, :race_specials, :gender, :birthsign, :char_class, :attributes, :skills, :major_skills, :minor_skills,
                 :other_skills
 
   def initialize(race_name, gender, name_db, stats_db, classes_db)
@@ -16,6 +16,8 @@ class Character
     # Load Race Stats
     race_def = stats_db.get_race_def(@race)
     raise "Race data missing for #{@race}" unless race_def
+
+    @race_specials = race_def['specials']
 
     # Apply Gender-Specific Attributes
     base_stats = race_def['stats'][@gender]
@@ -57,19 +59,19 @@ class Character
     # #{@racial_skills.map { |k, v| "+#{v} #{k.capitalize}" }.join("\n")}
     # ------------------------------------------
     <<~HEREDOC
-      ==========================================
+      ====================================================================================
       IDENTITY
-      Name:      #{@name}
-      Race:      #{@gender.capitalize} #{@race.capitalize}
-      Birthsign: #{@birthsign['name']}
-      Class :    #{@char_class['name']}
-      ------------------------------------------
+           Name:      #{@name}
+           Race:      #{@gender.capitalize} #{@race.capitalize}
+           Birthsign: #{@birthsign['name']}
+           Class :    #{@char_class['name']}
+      ------------------------------------------------------------------------------------
       ATTRIBUTES
-      STR: #{@attributes['str']}  INT: #{@attributes['int']}
-      WIL: #{@attributes['wil']}  AGI: #{@attributes['agi']}
-      SPD: #{@attributes['spd']}  END: #{@attributes['end']}
-      PER: #{@attributes['per']}  LUC: #{@attributes['luc']}
-      ------------------------------------------
+           STR: #{@attributes['str']}  INT: #{@attributes['int']}
+           WIL: #{@attributes['wil']}  AGI: #{@attributes['agi']}
+           SPD: #{@attributes['spd']}  END: #{@attributes['end']}
+           PER: #{@attributes['per']}  LUC: #{@attributes['luc']}
+      ------------------------------------------------------------------------------------
       SKILLS
       Major:
            #{@major_skills.map { |k, v| "#{v} #{k.capitalize}" }.join("\n     ")}
@@ -77,14 +79,14 @@ class Character
            #{@minor_skills.map { |k, v| "#{v} #{k.capitalize}" }.join("\n     ")}
       Other:
            #{@other_skills.map { |k, v| "#{v} #{k.capitalize}" }.join("\n     ")}
-      ==========================================
+      ====================================================================================
     HEREDOC
   end
 end
 
 # DEMO
 cb = ClassGenerator.new('../data/classes.yml')
-sb = StatsGenerator.new('../data/stats.yml')
+sb = StatsGenerator.new('../data/stats.yml', '../data/birthsigns.yml')
 nd = NameGenerator.new('../data/names.yml')
 C = Character.new(ARGV[1], ARGV[0], nd, sb, cb)
 
