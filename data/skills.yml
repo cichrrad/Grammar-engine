@@ -1,0 +1,24 @@
+skills:
+  - specialization: "combat"
+    skills: ["Heavy_Armor", "Medium_Armor", "Spear", "Armorer", "Axe", "Blunt_Weapon", "Long_Blade", "Block", "Athletics"]
+  
+  - specialization: "magic"
+    skills: ["Illusion", "Alchemy", "Conjuration", "Enchant", "Alteration", "Destruction", "Mysticism", "Restoration", "Unarmored"]
+
+  - specialization: "stealth"
+    skills: ["Acrobatics", "Light_Armor", "Marksman", "Sneak", "Hand_to_Hand", "Short_Blade", "Mercantile", "Speechcraft", "Security"] 
+
+  - specialization: "None"
+    skills: ["Luck"]
+
+
+
+
+
+
+
+
+
+
+
+  

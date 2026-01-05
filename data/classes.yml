@@ -1,0 +1,399 @@
+classes:
+  - name: "Acrobat"
+    description: "Acrobat is a polite euphemism for an agile burglar. These thieves use stealth, speed, and cunning to steal from the unwary."
+    specialization: "stealth"
+    favored_attributes:
+      - "agi"
+      - "end"
+    major_skills:
+      - "acrobatics"
+      - "athletics"
+      - "marksman"
+      - "sneak"
+      - "unarmored"
+    minor_skills:
+      - "alteration"
+      - "hand_to_hand"
+      - "light_armor"
+      - "spear"
+      - "speechcraft"
+  
+  - name: "Agent"
+    description: "Agents are operatives of the Empire, skilled in deception, stealth, and self-defense."
+    specialization: "stealth"
+    favored_attributes:
+      - "per"
+      - "agi"
+    major_skills:
+      - "speechcraft"
+      - "sneak"
+      - "acrobatics"
+      - "light_armor"
+      - "short_blade"
+    minor_skills:
+      - "mercantile"
+      - "conjuration"
+      - "block"
+      - "unarmored"
+      - "illusion"
+  
+  - name: "Archer"
+    description: "Archers are fighters specializing in long-range combat and rapid movement."
+    specialization: "combat"
+    favored_attributes:
+      - "agi"
+      - "str"
+    major_skills:
+      - "marksman"
+      - "long_blade"
+      - "block"
+      - "athletics"
+      - "light_armor"
+    minor_skills:
+      - "unarmored"
+      - "spear"
+      - "restoration"
+      - "sneak"
+      - "medium_armor"
+  
+  - name: "Assassin"
+    description: "Assassins are killers who rely on stealth and mobility to approach victims undetected."
+    specialization: "stealth"
+    favored_attributes:
+      - "spd"
+      - "int"
+    major_skills:
+      - "sneak"
+      - "marksman"
+      - "light_armor"
+      - "short_blade"
+      - "acrobatics"
+    minor_skills:
+      - "security"
+      - "long_blade"
+      - "alchemy"
+      - "block"
+      - "athletics"
+  
+  - name: "Barbarian"
+    description: "Barbarians are proud, savage warriors from the wastelands."
+    specialization: "combat"
+    favored_attributes:
+      - "str"
+      - "spd"
+    major_skills:
+      - "axe"
+      - "medium_armor"
+      - "blunt_weapon"
+      - "athletics"
+      - "block"
+    minor_skills:
+      - "acrobatics"
+      - "light_armor"
+      - "armorer"
+      - "marksman"
+      - "unarmored"
+  
+  - name: "Bard"
+    description: "Bards are loremasters and storytellers, but they also crave adventure and can hold their own in a fight."
+    specialization: "stealth"
+    favored_attributes:
+      - "per"
+      - "int"
+    major_skills:
+      - "speechcraft"
+      - "alchemy"
+      - "acrobatics"
+      - "long_blade"
+      - "block"
+    minor_skills:
+      - "mercantile"
+      - "illusion"
+      - "medium_armor"
+      - "enchant"
+      - "security"
+  
+  - name: "Battlemage"
+    description: "Battlemages are wizard-warriors, trained in both lethal spellcasting and heavily armored combat."
+    specialization: "magic"
+    favored_attributes:
+      - "int"
+      - "str"
+    major_skills:
+      - "alteration"
+      - "destruction"
+      - "conjuration"
+      - "axe"
+      - "heavy_armor"
+    minor_skills:
+      - "mysticism"
+      - "enchant"
+      - "alchemy"
+      - "long_blade"
+      - "marksman"
+  
+  - name: "Crusader"
+    description: "Crusaders are heavily armored knights with magical aptitude."
+    specialization: "combat"
+    favored_attributes:
+      - "agi"
+      - "str"
+    major_skills:
+      - "blunt_weapon"
+      - "long_blade"
+      - "destruction"
+      - "heavy_armor"
+      - "block"
+    minor_skills:
+      - "restoration"
+      - "armorer"
+      - "hand_to_hand"
+      - "medium_armor"
+      - "alchemy"
+  
+  - name: "Healer"
+    description: "Healers are spellcasters who swear solemn oaths to heal the injured and cure the diseased."
+    specialization: "magic"
+    favored_attributes:
+      - "wil"
+      - "per"
+    major_skills:
+      - "restoration"
+      - "mysticism"
+      - "alteration"
+      - "hand_to_hand"
+      - "speechcraft"
+    minor_skills:
+      - "illusion"
+      - "alchemy"
+      - "unarmored"
+      - "light_armor"
+      - "blunt_weapon"
+  
+  - name: "Knight"
+    description: "Knights are the noble warriors of society, trained in heavy armor and the arts of war."
+    specialization: "combat"
+    favored_attributes:
+      - "str"
+      - "per"
+    major_skills:
+      - "long_blade"
+      - "axe"
+      - "speechcraft"
+      - "heavy_armor"
+      - "block"
+    minor_skills:
+      - "restoration"
+      - "mercantile"
+      - "medium_armor"
+      - "enchant"
+      - "armorer"
+  
+  - name: "Mage"
+    description: "Mages are dedicated scholars and spellcasters."
+    specialization: "magic"
+    favored_attributes:
+      - "int"
+      - "wil"
+    major_skills:
+      - "mysticism"
+      - "destruction"
+      - "alteration"
+      - "illusion"
+      - "restoration"
+    minor_skills:
+      - "enchant"
+      - "alchemy"
+      - "unarmored"
+      - "short_blade"
+      - "conjuration"
+  
+  - name: "Monk"
+    description: "Monks are students of the ancient martial arts of hand-to-hand combat and unarmored defense."
+    specialization: "stealth"
+    favored_attributes:
+      - "agi"
+      - "wil"
+    major_skills:
+      - "hand_to_hand"
+      - "unarmored"
+      - "athletics"
+      - "acrobatics"
+      - "sneak"
+    minor_skills:
+      - "block"
+      - "marksman"
+      - "light_armor"
+      - "restoration"
+      - "blunt_weapon"
+  
+  - name: "Nightblade"
+    description: "Nightblades are spellcasters who use their magics to enhance mobility, concealment, and stealthy close combat."
+    specialization: "magic"
+    favored_attributes:
+      - "wil"
+      - "spd"
+    major_skills:
+      - "mysticism"
+      - "illusion"
+      - "alteration"
+      - "sneak"
+      - "short_blade"
+    minor_skills:
+      - "light_armor"
+      - "unarmored"
+      - "destruction"
+      - "restoration"
+      - "security"
+  
+  - name: "Pilgrim"
+    description: "Pilgrims are travellers, seekers of truth and enlightenment."
+    specialization: "stealth"
+    favored_attributes:
+      - "per"
+      - "end"
+    major_skills:
+      - "speechcraft"
+      - "mercantile"
+      - "marksman"
+      - "restoration"
+      - "medium_armor"
+    minor_skills:
+      - "illusion"
+      - "hand_to_hand"
+      - "short_blade"
+      - "block"
+      - "alchemy"
+  
+  - name: "Rogue"
+    description: "Rogues are adventurers and opportunists with a gift for getting in and out of trouble."
+    specialization: "combat"
+    favored_attributes:
+      - "spd"
+      - "per"
+    major_skills:
+      - "short_blade"
+      - "mercantile"
+      - "axe"
+      - "light_armor"
+      - "hand_to_hand"
+    minor_skills:
+      - "block"
+      - "medium_armor"
+      - "speechcraft"
+      - "athletics"
+      - "long_blade"
+  
+  - name: "Scout"
+    description: "Scouts rely on stealth to survey routes and opponents, using ranged weapons and skirmish tactics."
+    specialization: "combat"
+    favored_attributes:
+      - "spd"
+      - "end"
+    major_skills:
+      - "sneak"
+      - "long_blade"
+      - "medium_armor"
+      - "athletics"
+      - "block"
+    minor_skills:
+      - "marksman"
+      - "alchemy"
+      - "alteration"
+      - "light_armor"
+      - "unarmored"
+  
+  - name: "Sorcerer"
+    description: "Sorcerers rely on the power of their enchantments and summons."
+    specialization: "magic"
+    favored_attributes:
+      - "int"
+      - "end"
+    major_skills:
+      - "enchant"
+      - "conjuration"
+      - "mysticism"
+      - "destruction"
+      - "alteration"
+    minor_skills:
+      - "illusion"
+      - "medium_armor"
+      - "heavy_armor"
+      - "marksman"
+      - "short_blade"
+  
+  - name: "Spellsword"
+    description: "Spellswords are versatile combatants, trained in the arts of war and magic."
+    specialization: "magic"
+    favored_attributes:
+      - "wil"
+      - "end"
+    major_skills:
+      - "block"
+      - "restoration"
+      - "long_blade"
+      - "destruction"
+      - "heavy_armor"
+    minor_skills:
+      - "blunt_weapon"
+      - "enchant"
+      - "alchemy"
+      - "medium_armor"
+      - "axe"
+  
+  - name: "Thief"
+    description: "Thieves are pickpockets and pilferers who choose stealth and subterfuge over violence."
+    specialization: "stealth"
+    favored_attributes:
+      - "spd"
+      - "agi"
+    major_skills:
+      - "security"
+      - "sneak"
+      - "acrobatics"
+      - "light_armor"
+      - "short_blade"
+    minor_skills:
+      - "marksman"
+      - "speechcraft"
+      - "hand_to_hand"
+      - "mercantile"
+      - "blunt_weapon"
+  
+  - name: "Warrior"
+    description: "Warriors are the professional men-of-arms, soldiers, mercenaries, and adventurers of the Empire."
+    specialization: "combat"
+    favored_attributes:
+      - "str"
+      - "end"
+    major_skills:
+      - "long_blade"
+      - "medium_armor"
+      - "heavy_armor"
+      - "athletics"
+      - "block"
+    minor_skills:
+      - "armorer"
+      - "spear"
+      - "marksman"
+      - "axe"
+      - "blunt_weapon"
+  
+  - name: "Witchhunter"
+    description: "Witchhunters are dedicated to rooting out and destroying the perverted practices of dark cults and profane sorcery."
+    specialization: "magic"
+    favored_attributes:
+      - "int"
+      - "agi"
+    major_skills:
+      - "conjuration"
+      - "enchant"
+      - "alchemy"
+      - "light_armor"
+      - "marksman"
+    minor_skills:
+      - "mysticism"
+      - "block"
+      - "blunt_weapon"
+      - "sneak"
+      - "unarmored"
