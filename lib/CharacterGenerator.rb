@@ -6,8 +6,10 @@ require_relative 'SkillsGenerator'
 class Character
   attr_accessor :name, :race, :race_specials, :gender, :birthsign, :char_class, :attributes, :skills, :major_skills, :minor_skills,
                 :other_skills
+  attr_reader :cached_heredoc
 
   def initialize(race_name, gender, name_db, stats_db, classes_db)
+    @cached_heredoc = nil
     @race = race_name
     @gender = gender.downcase
     # Generate Name
@@ -45,8 +47,8 @@ class Character
     @racial_skills = race_def['skill_bonuses']
 
     # skills
-
-    sg = SkillsGenerator.new('../data/skills.yml', @char_class, @racial_skills)
+    skills_data_path = File.join(__dir__, '../data/skills.yml')
+    sg = SkillsGenerator.new(skills_data_path, @char_class, @racial_skills)
 
     @skills = sg.skills
     @major_skills = sg.major
@@ -55,31 +57,49 @@ class Character
   end
 
   def to_s
-    # RACIAL BONUSES
-    # #{@racial_skills.map { |k, v| "+#{v} #{k.capitalize}" }.join("\n")}
-    # ------------------------------------------
-    <<~HEREDOC
-      ====================================================================================
+    return @cached_heredoc unless @cached_heredoc.nil?
+
+    # Helper lambda to format a single skill entry (e.g., "35 Long_blade")
+    fmt = ->(k, v) { "#{v.to_s.rjust(3)} #{k.capitalize.gsub('_', ' ')}" }
+
+    # Create arrays of formatted strings for each category
+    maj_list = @major_skills.map(&fmt)
+    min_list = @minor_skills.map(&fmt)
+    other_list = @other_skills.map(&fmt)
+
+    # Split 'Other' skills into two arrays of 9 for the two columns
+    oth_col1, oth_col2 = other_list.each_slice(9).to_a
+
+    # Helper lambda to join two lists into side-by-side columns
+    # ljust(30) ensures the first column always takes up 30 characters
+    join_cols = lambda { |left, right|
+      left.zip(right).map { |l, r| "     #{l.ljust(30)} #{r}" }.join("\n")
+    }
+
+    # Generate the actual multiline strings
+    maj_min_block = join_cols.call(maj_list, min_list)
+    other_block   = join_cols.call(oth_col1, oth_col2)
+
+    @cached_heredoc = <<~HEREDOC
       IDENTITY
-           Name:      #{@name}
-           Race:      #{@gender.capitalize} #{@race.capitalize}
-           Birthsign: #{@birthsign['name']}
-           Class :    #{@char_class['name']}
+            Name:      #{@name}
+            Race:      #{@gender.capitalize} #{@race.capitalize}
+            Birthsign: #{@birthsign['name']}
+            Class :    #{@char_class['name']}
       ------------------------------------------------------------------------------------
       ATTRIBUTES
-           STR: #{@attributes['str']}  INT: #{@attributes['int']}
-           WIL: #{@attributes['wil']}  AGI: #{@attributes['agi']}
-           SPD: #{@attributes['spd']}  END: #{@attributes['end']}
-           PER: #{@attributes['per']}  LUC: #{@attributes['luc']}
+            STR: #{@attributes['str'].to_s.ljust(25)} INT: #{@attributes['int']}
+            WIL: #{@attributes['wil'].to_s.ljust(25)} AGI: #{@attributes['agi']}
+            SPD: #{@attributes['spd'].to_s.ljust(25)} END: #{@attributes['end']}
+            PER: #{@attributes['per'].to_s.ljust(25)} LUC: #{@attributes['luc']}
       ------------------------------------------------------------------------------------
       SKILLS
-      Major:
-           #{@major_skills.map { |k, v| "#{v} #{k.capitalize}" }.join("\n     ")}
-      Minor:
-           #{@minor_skills.map { |k, v| "#{v} #{k.capitalize}" }.join("\n     ")}
+
+      Major:                        Minor:
+      #{maj_min_block}
+
       Other:
-           #{@other_skills.map { |k, v| "#{v} #{k.capitalize}" }.join("\n     ")}
-      ====================================================================================
+      #{other_block}
     HEREDOC
   end
 end

@@ -1,4 +1,3 @@
-
 # Morrowind Lore-Accurate Character Generator
 
 ![demo](./morrowgen-demo.gif)
@@ -13,7 +12,6 @@ Ruby application that generates **sound** and **lore-accurate** character sheets
 * **Orcs:** Correctly handles gendered surnames (`gro-` for males, `gra-` for females).
 * **Imperials:** Context-aware gender suffixes for Roman-style names.
 
-
 ### **True Stat Calculation:**
 * Calculates **Attributes** by summing: `Race Base Stats` + `Gender Differences` + `Birthsign Bonuses` + `Class Favored Attributes`.
 
@@ -23,67 +21,76 @@ Ruby application that generates **sound** and **lore-accurate** character sheets
 * Applies **Racial Bonuses** (e.g., Dunmer get +10 Destruction).
 * Outputs the final, calculated value for every skill.
 
-## Example
+## Installation
 
-### Input
+1. Clone the repository.
+2. Install the required gems (including the new CLI tools):
 
 ```bash
-ruby MorrowGen.rb male orc
+bundle install
 ```
 
-### Output
+## Usage
+
+You can now run the generator from the project root in two ways:
+
+### 1. Interactive Mode
+
+Navigate through menus to select your gender and race.
+
+```bash
+ruby bin/cliMorrowGen.rb
+```
+
+### 2. Command Line Interface
+
+Generate a character instantly by passing arguments.
+
+```bash
+ruby bin/MorrowGen.rb <gender> <race>
+```
+
+*Example:* `ruby bin/MorrowGen.rb male orc`
+
+## Output Example
 
 ```text
-==========================================
 IDENTITY
-Name:      Durzum gro-Bagrat
-Race:      Male Orc
-Birthsign: The Steed
-Class :    Healer
-------------------------------------------
+      Name:      Gurak gro-Agadbu
+      Race:      Male Orc
+      Birthsign: The Mage
+      Class :    Archer
+------------------------------------------------------------------------------------
 ATTRIBUTES
-STR: 45  INT: 30
-WIL: 60  AGI: 35
-SPD: 55  END: 50
-PER: 40  LUC: 40
-------------------------------------------
+      STR: 55                        INT: 30
+      WIL: 50                        AGI: 45
+      SPD: 30                        END: 50
+      PER: 30                        LUC: 40
+------------------------------------------------------------------------------------
 SKILLS
-Major:
-     35 Alteration
-     35 Mysticism
-     35 Restoration
-     30 Hand_to_hand
-     30 Speechcraft
-Minor:
-     15 Blunt_weapon
-     20 Illusion
-     20 Alchemy
-     20 Unarmored
-     15 Light_armor
+
+Major:                        Minor:
+      35 Long blade                  30 Medium armor
+      45 Block                       20 Spear
+      35 Athletics                   15 Restoration
+      30 Light armor                 15 Unarmored
+      30 Marksman                    15 Sneak
+
 Other:
-     15 Heavy_armor
-     15 Medium_armor
-     5 Spear
-     15 Armorer
-     10 Axe
-     5 Long_blade
-     15 Block
-     5 Athletics
-     10 Conjuration
-     10 Enchant
-     10 Destruction
-     5 Acrobatics
-     5 Marksman
-     5 Sneak
-     5 Short_blade
-     5 Mercantile
-     5 Security
-     5 Luck
-==========================================
+      20 Heavy armor                  5 Destruction
+      20 Armorer                      5 Mysticism
+      15 Axe                          5 Acrobatics
+      10 Blunt weapon                 5 Hand to hand
+       5 Illusion                     5 Short blade
+       5 Alchemy                      5 Mercantile
+       5 Conjuration                  5 Speechcraft
+       5 Enchant                      5 Security
+       5 Alteration                   5 Luck
 ```
 
 ## Roadmap
 
+* [x] **Interactive CLI:** A robust menu system for easier selection.
 * [ ] **Custom Class Generator:** Random, yet **sound** class gen (right now we pick pre-made classes). This would be semi-random, avoiding things such as having contradictory choices (Heavy armor and unarmored as major skills, etc...)
 * [ ] **AI Backstories:** Integration with LLMs to generate a biography explaining *why* your Orc Archer knows Restoration.
-* [ ] **Interactive CLI:** A robust menu system for easier selection.
+```
